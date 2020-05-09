@@ -9,8 +9,8 @@ app_ui <- function(request) {
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # List the first level UI elements here 
-    fluidPage(
-      h1("euclideo")
+    nessy::cartridge(
+      mod_welcome_ui("welcome_ui")
     )
   )
 }

@@ -1,3 +1,7 @@
 .Rhistory
 .RData
 .Rproj.user
+euclideo.Rcheck/
+euclideo*.tar.gz
+euclideo*.tgz
+auths/
