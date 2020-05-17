@@ -9,30 +9,27 @@
 #' @importFrom shiny NS tagList 
 mod_welcome_ui <- function(id){
   ns <- NS(id)
-  nessy::container_with_title("Welcome hero!",is_centered=TRUE,is_rounded=TRUE,
-                              tags$p("Sign in to help Euclideo get home!"),
-                              tags$br(),
-                              tags$br(),
-                              useFirebase(),
-                              useFirebaseUI()
-                              )
-
-  
-
+  uiOutput(ns("welcome"))
 }
     
 #' welcome Server Function
 #'
 #' @noRd 
-mod_welcome_server <- function(input, output, session){
+mod_welcome_server <- function(input, output, session, f){
   ns = session$ns
-  f = FirebaseUI$
-    new(config="./auths/firebase.rds")$ # instantiate
-    set_providers( # define providers
-      email = TRUE, 
-      google = TRUE
-    )$
-    launch() # launch
+  
+  output$welcome = renderUI({
+    f$req_sign_out()
+    shiny::tagList(
+      nessy::balloon("Sign in to help Euclideo get home!", 
+                   side = "left"),
+      tags$br(),
+      tags$img(src="www/img/euclideo.png",
+                            height="200")
+    )
+  })
+  
+
   
 }
     

@@ -10,7 +10,12 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # List the first level UI elements here 
     nessy::cartridge(
-      mod_welcome_ui("welcome_ui")
+      nessy::container_with_title("Euclideo",is_centered=TRUE,is_rounded=TRUE,
+                                  mod_welcome_ui("welcome_ui"),
+                                  mod_progress_bar_ui("progress_bar_ui_1"),
+                                  useFirebase(),
+                                  useFirebaseUI(),
+                                  )
     )
   )
 }
